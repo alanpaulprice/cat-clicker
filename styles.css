@@ -7,23 +7,37 @@ body {
 }
 #wrapper {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  margin: 0 auto;
+  grid-template-columns: 1fr;
   max-width: 960px;
+  margin: 0 auto;
 }
-.cat-pic-parents {
-  margin-top: 20px;
+#cat-nav {
+  display: flex;
+  min-height: 20px;
+  padding: 30px;
+}
+#cat-nav li {
+  list-style-type: none;
+  padding: 0;
   text-align: center;
-}
-.cat-pic-parents .cat-name-h1 {
-  font-size: 500%;
-}
-.cat-pic-parents .cat-pic-imgs {
-  width: 50%;
-  border-radius: 50%;
-  margin: 20px 0;
-}
-.cat-pic-parents .count-readouts {
-  font-size: 500%;
+  flex: 1 1 0;
   font-weight: bold;
+  font-size: 200%;
+}
+.cat-info-containers {
+  min-height: 100px;
+  text-align: center;
+  display: none;
+}
+.cat-info-containers .cat-title {
+  font-size: 300%;
+}
+.cat-info-containers img {
+  width: 500px;
+}
+.cat-info-containers .clicks-counts {
+  font-size: 500%;
+}
+.show {
+  display: block;
 }
