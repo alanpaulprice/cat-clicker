@@ -6,13 +6,14 @@
 }
 
 body {
-  background-color: #999;
+  background-color: #808080;
 }
 
 #wrapper {
   display: grid;
   grid-template-columns: 1fr;
   max-width: 960px;
+  min-width: 320px;
   margin: 0 auto;
 }
 
@@ -28,25 +29,22 @@ body {
     flex: 1 1 0;
     font-weight: bold;
     font-size: 200%;
+    text-transform: uppercase;
   }
 }
 
-.cat-info-containers {
+#cat-display-area {
   min-height: 100px;
   text-align: center;
-  display: none;
-  //border: 1px solid black;
-  .cat-title {
+  #cat-title {
     font-size: 300%;
+    text-transform: uppercase;
   }
-  img {
+  #cat-img {
     width: 500px;
+    margin: 10px 0;
   }
-  .clicks-counts {
+  #click-count-readout {
     font-size: 500%;
   }
-}
-
-.show {
-  display: block;
 }

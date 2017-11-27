@@ -1,96 +1,96 @@
-const cats = [
-  {
-    name: "goose",
-    pic: "cat-pics/goose.JPG",
-    clicks: 0
+// ===== MODEL =====
+let model = {
+  cats: {
+    goose: {
+      pic: "cat-pics/goose.JPG",
+      clicks: 0
+    },
+    kit: {
+      pic: "cat-pics/kit.JPG",
+      clicks: 0
+    },
+    fleef: {
+      pic: "cat-pics/fleef.JPG",
+      clicks: 0
+    },
+    jimmy: {
+      pic: "cat-pics/jimmy.JPG",
+      clicks: 0
+    },
+    molly: {
+      pic: "cat-pics/molly.JPG",
+      clicks: 0
+    }
   },
-  {
-    name: "kit",
-    pic: "cat-pics/kit.JPG",
-    clicks: 0
+
+  currentCat: "",
+
+  changeCurrentCat: (catName) => {
+    model.currentCat = catName;
   },
-  {
-    name: "fleef",
-    pic: "cat-pics/fleef.JPG",
-    clicks: 0
+
+  getCurrentCatInfo: () => {
+    return {
+      name: model.currentCat,
+      pic: model.cats[model.currentCat].pic,
+      clicks: model.cats[model.currentCat].clicks,
+    };
   },
-  {
-    name: "jimmy",
-    pic: "cat-pics/jimmy.JPG",
-    clicks: 0
-  },
-  {
-    name: "molly",
-    pic: "cat-pics/molly.JPG",
-    clicks: 0
+
+  incrementClick: () => {
+    model.cats[model.currentCat].clicks++;
   }
-];
-// ===== CREATE WRAPPER =====
-const wrapper = document.createElement("div");
-wrapper.id = "wrapper";
-document.body.appendChild(wrapper);
 
-// ===== HIDE ALL CATS =====
-function hideAllCats () {
-  for (let i = 0; i < allCatContainers.length; i++) {
-    allCatContainers[i].classList.remove("show");
+}; // ===== MODEL =====
+
+// ===== OCTOPUS =====
+let octopus = {
+  init: () => {
+    view.init(Object.keys(model.cats));
+  },
+
+  newCurrentCat: (catName) => {
+    model.changeCurrentCat(catName);
+    view.updateDisplay(model.getCurrentCatInfo());
+  },
+
+  registerClick: (name) => {
+    model.incrementClick();
+    view.updateDisplay(model.getCurrentCatInfo());
   }
-}
+}; // ===== OCTOPUS =====
 
-// ===== CREATE CAT NAV =====
-const catNav = document.createElement("ul");
-catNav.id = "cat-nav"
-wrapper.appendChild(catNav);
+// ===== VIEW =====
+let view = {
+  init: (catNames) => {
+    let catNav = document.getElementById("cat-nav");
+    let catImg = document.getElementById("cat-img");
 
-// ===== CREATE CAT INFO CONTAINERS PARENT =====
-const catInfoContainersParent = document.createElement("div");
-catInfoContainersParent.id = "cat-info-containers-parent";
-wrapper.appendChild(catInfoContainersParent);
+    for (let i = 0; i < catNames.length; i++) {
+      let listItem = document.createElement("li");
+      listItem.textContent = catNames[i];
 
-// ===== TARGETS ALL CAT INFO CONTAINERS =====
-const allCatContainers = catInfoContainersParent.childNodes;
+      listItem.addEventListener("click", () => {
+        octopus.newCurrentCat(catNames[i]);
+      });
 
-for (let i = 0; i < cats.length; i++) {
+      catNav.appendChild(listItem);
+    }
 
-  let cat = cats[i];
+    catImg.addEventListener("click", () => {
+      octopus.registerClick();
+    });
+  },
 
-  // ===== GENERATE CAT NAV LI =====
-  let li = document.createElement("li");
-  li.id = "li-" + cat.name;
-  li.textContent = cat.name.toUpperCase();
-  li.addEventListener("click", () => {
-    hideAllCats();
-    catInfoContainer.classList.add("show");
-  });
-  catNav.appendChild(li);
+  updateDisplay: (info) => {
+    let catTitle = document.getElementById("cat-title");
+    let catImg = document.getElementById("cat-img");
+    let clickCountReadout = document.getElementById("click-count-readout");
 
-  // ===== CREATE CAT INFO CONTAINER =====
-  let catInfoContainer = document.createElement("div");
-  catInfoContainer.id = "cat-info-container-" + cat.name;
-  catInfoContainer.classList.add("cat-info-containers");
-  catInfoContainersParent.appendChild(catInfoContainer);
+    catTitle.textContent = info.name;
+    catImg.src = info.pic;
+    clickCountReadout.textContent = info.clicks;
+  }
+}; // ===== VIEW =====
 
-  // ===== GENERATE TITLE =====
-  let catTitle = document.createElement("h1");
-  catTitle.classList.add("cat-title");
-  catTitle.textContent = cat.name.toUpperCase();
-  catInfoContainer.appendChild(catTitle);
-
-  // ===== GENERATE PIC =====
-  let catPic = document.createElement("img");
-  catPic.id = "cat-pic-" + cat.name;
-  catPic.src = cat.pic;
-  catPic.alt = "A picture of a cat called " + cat.name + ".";
-  catPic.addEventListener("click", () => {
-    cat.clicks++;
-    clicksCount.textContent = cat.clicks;
-  });
-  catInfoContainer.appendChild(catPic);
-
-  // ===== GENERATE CLICK COUNT =====
-  let clicksCount = document.createElement("h1");
-  clicksCount.id = "clicks-count-" + cat.name;
-  clicksCount.classList.add("clicks-counts");
-  clicksCount.textContent = "0";
-  catInfoContainer.appendChild(clicksCount);
-}
+octopus.init();
