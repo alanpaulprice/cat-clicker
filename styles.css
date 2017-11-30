@@ -1,9 +1,18 @@
 * {
   margin: 0;
   font-family: monospace;
+  color: #fff;
+  box-sizing: border-box;
+}
+.hover-style:hover {
+  color: #a0a0a0;
+}
+html,
+body {
+  min-height: 100%;
 }
 body {
-  background-color: #808080;
+  background: linear-gradient(#404040, #a0a0a0, #404040);
 }
 #wrapper {
   display: grid;
@@ -26,6 +35,9 @@ body {
   font-size: 200%;
   text-transform: uppercase;
 }
+#cat-nav li:hover {
+  color: #a0a0a0;
+}
 #cat-display-area {
   min-height: 100px;
   text-align: center;
@@ -40,4 +52,27 @@ body {
 }
 #cat-display-area #click-count-readout {
   font-size: 500%;
+}
+#admin-panel-parent {
+  margin: 0 auto;
+  text-align: center;
+}
+#admin-panel-parent #admin-show-hide-btn {
+  margin: 20px auto;
+  color: #404040;
+}
+#admin-panel-parent #admin-panel {
+  margin: 0 auto;
+  font-weight: bold;
+}
+#admin-panel-parent #admin-panel button,
+#admin-panel-parent #admin-panel input {
+  color: #404040;
+  margin: 2.5px 0;
+}
+#admin-panel-parent #admin-panel button {
+  width: 45%;
+}
+.hide {
+  display: none;
 }

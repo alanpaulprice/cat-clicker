@@ -10,17 +10,31 @@
 
 <body>
 
-  <wrapper>
-    
+  <div id="wrapper">
+
+    <!-- NAV -->
     <ul id="cat-nav"></ul>
 
+    <!-- DISPLAY -->
     <div id="cat-display-area">
       <h1 id="cat-title"></h1>
-      <img src="" alt="" id="cat-img">
+      <img src="" id="cat-img">
       <h1 id="click-count-readout"></h1>
     </div>
 
-  </wrapper>
+    <!-- ADMIN PANEL -->
+    <div id="admin-panel-parent">
+      <button id="admin-show-hide-btn">ADMIN</button>
+      <div id="admin-panel" class="hide">
+          <label for="name">NAME<br><input id="admin-input-name" type="text"></label><br>
+          <label for="pic">PIC<br><input id="admin-input-pic" type="text"></label><br>
+          <label for="clicks">CLICKS<br><input id="admin-input-clicks" type="text"></label><br>
+          <button id="admin-cancel-btn">CANCEL</button>
+          <button id="admin-save-btn">SAVE</button>
+      </div>
+    </div>
+
+  </div> <!-- wrapper -->
 
   <script src="./scripts.js"></script>
 </body>
