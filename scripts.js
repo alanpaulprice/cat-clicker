@@ -1,11 +1,27 @@
 let modelView = function () {
+  const self = this;
 
-  this.name = ko.observable("Goose");
-  this.imgSrc = ko.observable("./cat-pics/goose.JPG");
-  this.clickCount = ko.observable(0);
-  this.incrementClickCount = function () {
-    this.clickCount(this.clickCount() + 1);
+  self.name = ko.observable("Goose");
+  self.imgSrc = ko.observable("./cat-pics/goose.JPG");
+  self.clickCount = ko.observable(0);
+
+  self.incrementClickCount = () => {
+    self.clickCount(self.clickCount() + 1);
   };
+
+  self.catLevel = ko.computed(() => {
+    if (self.clickCount() < 5) {
+      return "Newborn";
+    } else if (self.clickCount() < 10) {
+      return "Infant";
+    } else if (self.clickCount() < 15) {
+      return "Teen";
+    } else if (self.clickCount() < 20) {
+      return "Adult";
+    } else {
+      return "Elderly";
+    }
+  });
 
 };
 
