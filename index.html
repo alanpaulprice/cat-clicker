@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="./styles.css">
+
+  <title>Cat Clicker</title>
+</head>
+<body>
+
+  <h1 data-bind="text: name"></h1>
+  <img src="" alt="A picture of a cat." data-bind="click: incrementClickCount,
+  attr: {src: imgSrc}">
+  <h1 data-bind="text: clickCount"></h1>
+
+  <script type='text/javascript' src='knockout-3.4.2.js'></script>
+  <script src="./scripts.js"></script>
+</body>
+</html>
