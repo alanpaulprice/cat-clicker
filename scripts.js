@@ -4,6 +4,13 @@ let modelView = function () {
   self.name = ko.observable("Goose");
   self.imgSrc = ko.observable("./cat-pics/goose.JPG");
   self.clickCount = ko.observable(0);
+  self.nicknames = ko.observableArray([
+    "First Nickname",
+    "Second Nickname",
+    "Third Nickname",
+    "Fourth Nickname",
+    "Fifth Nickname"
+  ]);
 
   self.incrementClickCount = () => {
     self.clickCount(self.clickCount() + 1);

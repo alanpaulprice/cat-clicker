@@ -15,6 +15,11 @@
   attr: {src: imgSrc}">
   <h1 data-bind="text: clickCount"></h1>
 
+  <h3>Nicknames:</h3>
+  <ul data-bind="foreach: nicknames">
+    <li data-bind="text: $data"></li>
+  </ul>
+
   <script type='text/javascript' src='knockout-3.4.2.js'></script>
   <script src="./scripts.js"></script>
 </body>
