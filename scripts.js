@@ -12,7 +12,7 @@ let Cat = function () {
     "Fifth Nickname"
   ]);
 
-  self.catLevel = ko.computed(() => {
+  self.catLevel = ko.computed(function () {
     if (self.clickCount() < 5) {
       return "Newborn";
     } else if (self.clickCount() < 10) {
@@ -30,9 +30,9 @@ let Cat = function () {
 let modelView = function () {
   const self = this;
 
-  this.currentCat = ko.observable(new Cat());
+  self.currentCat = ko.observable(new Cat());
 
-  self.incrementClickCount = () => {
+  self.incrementClickCount = function () {
     self.currentCat().clickCount(self.currentCat().clickCount() + 1);
   };
 

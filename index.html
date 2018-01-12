@@ -9,16 +9,18 @@
 </head>
 <body>
 
-  <h1 data-bind="text: currentCat().name"></h1>
-  <h2 data-bind="text: currentCat().catLevel"></h2>
-  <img src="" alt="A picture of a cat." data-bind="click: incrementClickCount,
-  attr: {src: currentCat().imgSrc}">
-  <h1 data-bind="text: currentCat().clickCount"></h1>
+  <div data-bind="with: currentCat">
+    <h1 data-bind="text: name"></h1>
+    <h2 data-bind="text: catLevel"></h2>
+    <img src="" alt="A picture of a cat." data-bind="click: $parent.incrementClickCount,
+    attr: {src: imgSrc}">
+    <h1 data-bind="text: clickCount"></h1>
 
-  <h3>Nicknames:</h3>
-  <ul data-bind="foreach: currentCat().nicknames">
-    <li data-bind="text: $data"></li>
-  </ul>
+    <h3>Nicknames:</h3>
+    <ul data-bind="foreach: nicknames">
+      <li data-bind="text: $data"></li>
+    </ul>
+  </div>
 
   <script type='text/javascript' src='knockout-3.4.2.js'></script>
   <script src="./scripts.js"></script>
