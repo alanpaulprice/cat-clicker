@@ -1,4 +1,4 @@
-let modelView = function () {
+let Cat = function () {
   const self = this;
 
   self.name = ko.observable("Goose");
@@ -11,10 +11,6 @@ let modelView = function () {
     "Fourth Nickname",
     "Fifth Nickname"
   ]);
-
-  self.incrementClickCount = () => {
-    self.clickCount(self.clickCount() + 1);
-  };
 
   self.catLevel = ko.computed(() => {
     if (self.clickCount() < 5) {
@@ -29,6 +25,16 @@ let modelView = function () {
       return "Elderly";
     }
   });
+};
+
+let modelView = function () {
+  const self = this;
+
+  this.currentCat = ko.observable(new Cat());
+
+  self.incrementClickCount = () => {
+    self.currentCat().clickCount(self.currentCat().clickCount() + 1);
+  };
 
 };
 
