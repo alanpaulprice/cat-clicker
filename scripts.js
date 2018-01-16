@@ -1,3 +1,35 @@
+let initialCats = [{
+  name: "Goose",
+  imgSrc: "./cat-pics/goose.JPG",
+  nicknames: ["Big Fucker", "Mink", "Dinnymink"],
+  clickCount: 0
+},
+{
+  name: "Kit",
+  imgSrc: "./cat-pics/kit.JPG",
+  nicknames: ["Piss", "Squirrel", "Strutter"],
+  clickCount: 0
+},
+{
+  name: "Fleef",
+  imgSrc: "./cat-pics/fleef.JPG",
+  nicknames: ["Beef", "Roast Beef", "Freef"],
+  clickCount: 0
+},
+{
+  name: "Jimmy",
+  imgSrc: "./cat-pics/jimmy.JPG",
+  nicknames: ["Slug", "Spring Jim", "Fruit Bat"],
+  clickCount: 0
+},
+{
+  name: "Molly",
+  imgSrc: "./cat-pics/molly.JPG",
+  nicknames: ["Mein Kritler", "Crab", "Chittin"],
+  clickCount: 0
+}];
+
+// ===== CAT =====
 let Cat = function (data) {
   const self = this;
 
@@ -19,22 +51,34 @@ let Cat = function (data) {
       return "Elderly";
     }
   });
-};
+}; // CAT
 
+// ===== VIEWMODEL =====
 let modelView = function () {
   const self = this;
 
-  self.currentCat = ko.observable(new Cat({
-    name: "Goose",
-    imgSrc: "./cat-pics/goose.JPG",
-    nicknames: ["Goosey", "Goose Roast Beef", "Goosety Goose Goose", "Goose Goosington", "Colonel Goosetard"],
-    clickCount: 0
-  }));
+  self.catList = ko.observableArray([]);
+
+  initialCats.forEach(function (info) {
+    self.catList.push(new Cat(info));
+  });
+
+  self.currentCat = ko.observable(self.catList()[0]);
+
+  self.changeCurrentCat = function () {
+    let thing = this;
+    self.catList().forEach(function (item, index) {
+      if (item.name() === thing.name()) {
+        self.currentCat(self.catList()[index]);
+        return;
+      }
+    });
+  };
 
   self.incrementClickCount = function () {
     self.currentCat().clickCount(self.currentCat().clickCount() + 1);
   };
 
-};
+}; // VIEWMODEL
 
-ko.applyBindings(new modelView);
+ko.applyBindings(new modelView());
