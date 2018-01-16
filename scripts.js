@@ -1,16 +1,10 @@
-let Cat = function () {
+let Cat = function (data) {
   const self = this;
 
-  self.name = ko.observable("Goose");
-  self.imgSrc = ko.observable("./cat-pics/goose.JPG");
-  self.clickCount = ko.observable(0);
-  self.nicknames = ko.observableArray([
-    "First Nickname",
-    "Second Nickname",
-    "Third Nickname",
-    "Fourth Nickname",
-    "Fifth Nickname"
-  ]);
+  self.name = ko.observable(data.name);
+  self.imgSrc = ko.observable(data.imgSrc);
+  self.nicknames = ko.observableArray(data.nicknames);
+  self.clickCount = ko.observable(data.clickCount);
 
   self.catLevel = ko.computed(function () {
     if (self.clickCount() < 5) {
@@ -30,7 +24,12 @@ let Cat = function () {
 let modelView = function () {
   const self = this;
 
-  self.currentCat = ko.observable(new Cat());
+  self.currentCat = ko.observable(new Cat({
+    name: "Goose",
+    imgSrc: "./cat-pics/goose.JPG",
+    nicknames: ["Goosey", "Goose Roast Beef", "Goosety Goose Goose", "Goose Goosington", "Colonel Goosetard"],
+    clickCount: 0
+  }));
 
   self.incrementClickCount = function () {
     self.currentCat().clickCount(self.currentCat().clickCount() + 1);
