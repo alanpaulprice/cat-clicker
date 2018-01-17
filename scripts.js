@@ -65,14 +65,8 @@ let modelView = function () {
 
   self.currentCat = ko.observable(self.catList()[0]);
 
-  self.changeCurrentCat = function () {
-    let thing = this;
-    self.catList().forEach(function (item, index) {
-      if (item.name() === thing.name()) {
-        self.currentCat(self.catList()[index]);
-        return;
-      }
-    });
+  self.changeCurrentCat = function (item) {
+    self.currentCat(item);
   };
 
   self.incrementClickCount = function () {
